@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { fetchBooks, searchBooks } from '../../redux/BookActions';
 import { useSelector, useDispatch } from 'react-redux';
 import { bookActions } from '../../redux/BookSlice';
@@ -9,14 +9,12 @@ import debounce from 'lodash.debounce';
 const SearchContainer = () => {
 
     const [searching, setSearchingFlag] = useState<boolean>(false);
-
     const [searchValue, setSearchValue] = useState<string>('');
 
+    const booksForQuery = useSelector((state: any) => state.books.booksForQuery);
+    const allBooks: BooksShelfs = useSelector((state: any) => state.books.allBooks)
     const dispatch = useDispatch();
 
-    const booksForQuery = useSelector((state: any) => state.books.booksForQuery);
-
-    const allBooks: BooksShelfs = useSelector((state: any) => state.books.allBooks);
 
     const changeFilterValue = (event: any) => {
 
@@ -62,14 +60,8 @@ const SearchContainer = () => {
         setSearchingFlag(false);
     }, [booksForQuery]);
 
-    return (
-        <>
-            {
-                <Search isLoading={!allBooks || !searching} changeFilterValue={debouncedResults}
-                    books={booksForQuery} />
-            }
-        </>
-    )
+    return <Search isLoading={!allBooks || !searching} changeFilterValue={debouncedResults}
+        books={booksForQuery} />
 };
 
 export default SearchContainer;

@@ -1,10 +1,8 @@
-import { FC } from 'react';
 import { BooksShelfs } from '../../common/interfaces/BooksShelfs.interface';
 import BooksShelf from '../../common/components/book-shelf/BooksShelf';
 import Spinner from '../../common/components/spinner/Spinner';
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import React from 'react';
 
 const BooksTitle = styled.div`
   padding: 10px 0;
@@ -16,16 +14,13 @@ const BooksTitle = styled.div`
   color: white;
 }
 `;
-
 const OverviewLink = styled(Link)`
   color: white;
 `;
-
 const SearchLink = styled(Link)`
   margin-left: 25px;
   color: white;
 `;
-
 const BooksContent = styled.div`
 padding: 0 0 80px;
 flex: 1;
